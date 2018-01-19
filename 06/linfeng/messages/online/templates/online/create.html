@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>留言板</title>
+</head>
+<body>
+    {% if error %}
+        <div style="color:red">{{error}}</div>
+    {% endif %}
+    <form action="/online/save/" method="post">
+        {% csrf_token %}
+        用户名：<input type="text" name="username" value="{{username}}"/>
+        <br/><br/>
+        标题：<input type="text" name="title" value="{{title}}"/>
+        <br/><br/>
+        内容：<textarea name="content">{{content}}</textarea>
+        <br/><br/>
+        <input type="submit" value="提交"/>
+    </form>
+</body>
+</html>

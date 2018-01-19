@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>留言板</title>
+</head>
+<body>
+<a href='/online/create'> 留言</a>
+<a href='/home.html'> 返回主页</a>
+<br />
+<table>
+	<thead>
+	<tr>
+		<th>留言时间</th>
+		<th>留言者</th>
+		<th>标题</th>
+		<th>内容</th>
+	</tr>
+	</thead>
+	<tbody>
+	{% if messages %}
+		{% for msg in messages %}
+	<tr>
+		<td>{{ msg.publish_date }}</td>
+		<td>{{ msg.username}}</td>
+		<td>{{ msg.title}}</td>
+		<td>{{ msg.content}}</td>
+	</tr>
+		{% endfor %}
+	{% else %}
+		<tr>
+			<td> 没有数据 </td>
+		</tr>
+	{% endif %}
+	</tbody>
+</table>
+<br />
+</body>
+</html>

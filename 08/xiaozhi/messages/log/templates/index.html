@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+ <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>日志查看</title>
+        <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+	    <script src="/static/js/jquery2.1.4.min.js" ></script>
+	    <script src="/static/js/bootstrap.min.js"></script>
+    </head>
+<body>
+<!--<a href="/online/create/"><h2>点击这里留言</h2></a>-->
+
+<table class="table table-striped table-bordered need-collect" id="foo">
+    <thead>
+    <tr class="info">
+        <th>ip</th>
+        <th>access_time</th>
+        <th>method</th>
+        <th>url</th>
+        <th>agreement</th>
+        <th>status</th>
+        <th>flux</th>
+
+    </tr>
+    </thead>
+
+
+    <tbody>
+    {% if info %}
+        {% for key, values in info.items %}
+    <tr>
+        <td>{{ values.ip }}</td>
+        <td>{{ values.access_time }}</td>
+        <td>{{ values.method }}</td>
+        <td>{{ values.url }}</td>
+        <td>{{ values.agreement }}</td>
+        <td>{{ values.status }}</td>
+        <td>{{ values.flux }}</td>
+
+
+
+    </tr>
+        {% endfor %}
+    {% else %}
+    <tr>
+        <td colspan="4">没有数据</td>
+    </tr>
+    {% endif %}
+    </tbody>
+
+</table>
+
+</form>
+</body>
+</html>

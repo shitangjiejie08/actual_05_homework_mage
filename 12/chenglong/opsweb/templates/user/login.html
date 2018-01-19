@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="post" action="#">   ###   #好表示当前页面
+    <ul>
+        <li>
+            {% csrf_token %}
+            用户名：<input type="text" name="username">
+        </li>
+        <li>
+            密码：<input type="password" name="passwd">
+        </li>
+        <li>
+            <input type="submit" value="提交">
+        </li>
+    </ul>
+</form>
+</body>
+</html>

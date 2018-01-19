@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+	<title>排序列出用户</title>
+</head>
+	<h2>可选排序类型：</h2>
+<body>
+
+	<table>
+		<thead>
+			<tr>
+				<th>
+					<form  method="POST" action="index.html">
+							{% csrf_token %}
+						<input type="hidden" name="sort_type" value="username" />
+						<input type="submit" value="按名字排序">
+					</form>
+				</th>
+				<th>
+					<form  method="POST" action="index.html">
+						{% csrf_token %}
+						<input type="hidden" name="sort_type" value="age" />
+						<input type="submit" value="按年龄排序">
+					</form>
+				</th>
+				<th>
+					<form  method="POST" action="index.html">
+						{% csrf_token %}
+						<input type="hidden" name="sort_type" value="tel" />
+						<input type="submit" value="按电话号码排序">
+					</form>
+				</th>
+			</tr>
+		</thead>
+	</table>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>修改页面</title>
+</head>
+<body>
+    <h1>修改信息</h1>
+    {% if error %}
+        <div style="color: red">{{ error }}</div>
+    {% endif %}
+    <form action="/user/edit/" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="name" value="{{ name }}">
+        年龄：<input type="text" name="age" value="{{ age }}"> <br/><br/>
+        密码：<input type="password" name="password" value="{{ password }}" /> <br/><br/>
+        电话：<input type="text" name="tel" value="{{ tel }}" /> <br/><br/>
+        <input type="submit" value="提交" />
+    </form>
+    <a href="/user/require_list/">返回</a>
+</body>
+</html>

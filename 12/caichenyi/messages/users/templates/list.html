@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>用户列表</title>
+        <style>
+            #page{list-style-type: none}
+            #page li{float:left;margin-left: 5px}
+        </style>
+    </head>
+    <body>
+        <a href="/users/create/">添加</a>
+        <a href="/users/logout/">退出系统</a>
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>id</th>
+                <th>名字</th>
+                <th>email</th>
+                <th>状态</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in object_list %}
+                <tr>
+                    <td>{{ forloop.counter }}</td> <!--生成序号-->
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.is_active }}</td>
+                    <td>
+                        <a href="/users/modify_info/?id={{ user.id }}">编辑</a>
+                        <a href="/users/modify_passwd/?id={{ user.id }}">修改密码</a>
+                        <a href="/users/delete_user/?id={{ user.id }}">删除</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <ul id="page">
+        {% if page_obj.has_previous %}
+            <li><a href="/account/userlistview/?page={{ page_obj.previous_page_number }}">上一页</a></li>
+        {% endif %}
+
+        {% for num in page_obj.paginator.page_range %}
+            <li><a href="/account/userlistview/?page={{ num }}">{{ num }}</a></li>
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+            <li><a href="/account/userlistview/?page={{ page_obj.next_page_number }}">下一页</a></li>
+        {% endif %}
+    </ul>
+    </body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>用户编辑</title>
+    </head>
+    <body>
+        <h1>用户编辑</h1>
+        <form action="/users/modify_info/" method="POST" novalidate="novalidate">
+            <input type="hidden" name="id" value="{{ id }}"/>
+            <input type="hidden" name="action" value="{{ action }}"/>
+            <label>用户名:</label><input type="text" name="username"/><br/><br/>
+            <label>邮箱:</label><input type="email" name="email"/><br/><br/>
+            <input type="submit" value="编辑"/><br/><br/>
+        </form>
+    </body>
+</html>

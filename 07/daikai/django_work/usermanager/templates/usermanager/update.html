@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>用户信息修改</title>
+    </head>
+    <body>
+    	<h1>用户信息修改</h1>       
+	    <form action="/usermanager/update/" method="post">
+	        {% csrf_token %}
+		<label>用户名:</label><input type="hidden" name="name" value="{{ user.name }}"/><br/><br/>
+		<label>密码:</label><input type="password" name="password" value="{{ user.password }}"/><br/><br/>
+		<label>年龄:</label><input type="text" name="age" value="{{ user.age }}"/><br/><br/>
+		<label>电话:</label><input type="text" name="tel" value="{{ user.tel }}"/><br/><br/>
+		<input type="submit" value="修改用户信息"/><br/><br/>
+	    </form>
+    </body>
+</html>

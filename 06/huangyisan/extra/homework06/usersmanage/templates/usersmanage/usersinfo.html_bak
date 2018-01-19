@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>用户资料详情</title>
+    </head>
+    <body>
+        <h2>用户资料详情</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>用户</th>
+                    <th>年龄</th>
+                    <th>手机</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if messages %}
+                    {% for  message,value  in messages.items %}
+                    <tr>
+                        <td>{{ message }}</td>
+                        <td>{{ value.Age }}</td>
+                        <td>{{ value.Tel }}</td>
+                    </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td colspan="4"> 无数据 </td>
+                    </tr>
+                {% endif %}
+            </tbody>
+		</table>
+		<br></br>
+		<br></br>
+		<br></br>
+        <h3>用户信息操作</h3>
+        <a href='create.html'>添加用户</a>  
+        <a href='delete.html'>删除用户</a>  
+        <a href='search.html'>查询用户</a> 
+		<!--<h2>添加用户</h2>
+		<form action="/usersmanage/save/" method="GET">
+			<label>用户：</label> <input type="text" name="" /> <br> </br>
+			<label>年龄：</label> <input type="text" name="" /> <br> </br>
+			<label>手机：</label> <input type="text" name="" /> <br> </br>
+			<input type="submit" value="添加信息">
+		</form>-->
+    </body>
+</html>

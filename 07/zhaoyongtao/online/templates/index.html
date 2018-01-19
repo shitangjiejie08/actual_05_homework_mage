@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <title>Wellcome to OnlineMessage</title>
+</head>
+
+<body>
+	<table border=1>
+		<thead>在线留言 V0.0.1 Beta</thead>
+		<tr>
+			<th>name</th>
+			<th>title</th>
+			<th>context</th>
+			<th>time</th>
+		</tr>
+		<tbody>
+			{% if messages %}
+			{% for message in messages %}
+			<tr>
+				<td> {{ message.name }} </td>
+				<td> {{ message.title }} </td>
+				<td> {{ message.content }} </td>
+				<td> {{ message.publish_time }} </td>
+			</tr>
+			{% endfor %}
+			{% else %}
+				<tr>
+					<td colspan=4>暂无留言！</td>
+				</tr>
+			{% endif %}
+		</tbody>
+	</table>
+	<br /><br />
+    <a href='/online/create/'>去留言</a>
+</body>
+
+</html>

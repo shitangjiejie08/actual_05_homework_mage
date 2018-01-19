@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title></title>
+		<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" href="http://cdn.bootcss.com/font-awesome/4.6.2/css/font-awesome.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+				<div class="col-md-8 col-md-offset-2">
+					<form class="form-horizontal" action="{% url "user:regist" %}" method="POST">
+                        {% csrf_token %}
+
+						<div class="form-group">
+							<label class="control-label col-md-3" for="username"><i class="fa fa-user"></i> 用户名</label>
+							<div class="col-md-6">
+								<input type="text" class="form-control" name="user" id="username" placeholder="单击输入您的用户名">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="control-label col-md-3" for="pwd"><i class="fa fa-gg"></i> 密&nbsp&nbsp&nbsp码</label>
+							<div class="col-md-6">
+								<input type="password" class="form-control" name="pwd">
+							</div>
+						</div>
+                        <div class="form-group">
+							<label class="control-label col-md-3" for="tel"><i class="fa fa-phone"></i> 电&nbsp&nbsp&nbsp话</label>
+							<div class="col-md-6">
+								<input type="text" class="form-control" name="tel" id="tel">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-md-3" for="age"><i class="fa fa-tint"></i> 年&nbsp&nbsp&nbsp龄</label>
+							<div class="col-md-6">
+								<input type="text" class="form-control" name="age" id="age" >
+							</div>
+						</div>
+                        <div class="form-group">
+							<div class="col-md-6 col-md-offset-3">
+								<div class="checkbox">
+									<label for="remberme"><input type="checkbox" name="remberme">记住密码</label>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-md-7 pull-right">
+                                <input type="submit" class="btn btn-primary" name="regist" value="注册" onclick="Myregister()">
+								<a href="{% url "user:index" %}" class="btn btn-default">返回首页</a>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+    </div>
+
+</form>
+</body>
+<script>
+    function Myregister(){
+        alert("注册成功");
+    }
+</script>
+	<script src="http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</html>

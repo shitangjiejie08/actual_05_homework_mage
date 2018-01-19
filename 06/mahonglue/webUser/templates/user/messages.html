@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>留言板</title>
+</head>
+<body>
+    <h2>留言板</h2>
+    <form action="{% url "user:index" %}" method="POST">
+        {% csrf_token %}
+        留言内容：<br/><br/>
+        <textarea name="comment" placeholder="留言内容"></textarea><br/><br/>
+        <input type="submit" value="留言">
+    </form>
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Del_user</title>
+</head>
+<body>
+
+<table>
+    <thead>增加用户</thead>
+    <tr>
+        <th>用户名</th>
+    </tr>
+    <form action="/UserManagement/del_user/" method="post">
+        {% csrf_token %}
+        <tr>
+            <td><input type="text" name="username" value="{{ username }}" placeholder="请输入您要删除的用户名！" ></td>
+
+        </tr>
+    <input type="submit" value="提交" align="center">
+        {{ error }}
+    </form>
+</table>
+</body>
+</html>

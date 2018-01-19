@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>users_manage</title>
+    </head>
+    <body>
+        <h2>用户列表</h2>  <a href="/user/exit_user"> <input type="button" value="退出" onclick="window.location.href=('/user/exit_user/')"> </a>
+        <table>
+            <thead>
+                <tr>
+                    <th>name</th>
+                    <th>age</th>
+                    <th>tel</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if messages %}
+                    {% for message,value in messages.items %}
+                        <!--在add等环境如果出现异常，会传递过来一个error的key和对应的值，需要进行过滤-->
+                        {% if message == 'data_error' %}
+                            <label></label>
+                            {% elif message == 'func_error' %}
+                            <label></label>
+                        {% else %}
+                            <tr>
+                                <td>{{ message }}</td>
+                                <td>{{ value.age }}</td>
+                                <td>{{ value.tel }}</td>
+                                <td>
+                                    <a href="/user/edit_user/?name={{ message }}">编辑</a>
+                                    <a href="/user/delete_user/?name={{ message }}">删除</a> {{ messages.func_error }}
+                                </td>
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td colspan="3"> 无数据 </td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
+                <br></br>
+                <br></br>
+                ---------------------------------------------
+                <h2>添加用户信息</h2>
+                {{ messages.data_error }}
+                <form action="/user/list_user/" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="action" value="add"/>
+                    <label>Name:</label> <input type="text" name="name" placeholder="请输入姓名"/> <br> </br>
+                    <label>Age:</label> <input type="text" name="age"  placeholder="请输入年龄(0-150)"/> <br> </br>
+                    <label>Tel:</label> <input type="text" name="tel"  placeholder="请输入手机号码"/> <br> </br>
+                    <label>password:</label> <input type="password" name="password" placeholder="请输入密码,大于6位"/> <br> </br>
+                    <input type="submit" value='调♂教'/>
+                </form>
+    </body>
+</html>

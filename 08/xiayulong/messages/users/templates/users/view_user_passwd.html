@@ -1,0 +1,18 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'/>
+    <title></title>
+</head>
+<body>
+    <h1>{{ info }}</h1>
+    <form action="/users/modify_passwd/" method="post">
+        {% csrf_token %}
+        <label>用户名：</label> {{ name }} <input type="hidden" name="name" value="{{ name }}" /><br/>
+        <label>旧密码：</label><input type="password" name="old_password" /><br/>
+        <label>新密码：</label><input type="password" name="new_password" /><br/>
+        <label>确认：</label><input type="password" name="confirm_new_password" /><br/>
+        <input type="submit"/>
+    </form>
+</body>
+</html>

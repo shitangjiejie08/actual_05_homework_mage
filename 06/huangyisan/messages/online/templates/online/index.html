@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>users_manage</title>
+    </head>
+    <body>
+        <a href="/online/create/">留言</a>
+        <table>
+            <thead>
+                <tr>
+                    <th>time</th>
+                    <th>name</th>
+                    <th>title</th>
+                    <th>message</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if messages %}
+                    {% for message in messages %}
+                    <tr>
+                        <td>{{ message.time }}</td>
+                        <td>{{ message.username }}</td>
+                        <td>{{ message.title }}</td>
+                        <td>{{ message.content }}</td>
+                    </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td colspan="4"> 无数据 </td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </body>
+</html>

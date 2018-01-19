@@ -1,0 +1,14 @@
+#encoding:utf-8
+#二分查找又称折半查找，优点是比较次数少，查找速度快，平均性能好；其缺点是要求待查表为有序表，且插入删除困难。  #因此，折半查找方法适用于不经常变动而查找频繁的有序列表。  #首先，假设表中元素是按升序排列，将表中间位置记录的关键字与查找关键字比较，如果两者相等，则查找成功；  #否则利用中间位置记录将表分成前、后两个子表，如果中间位置记录的关键字大于查找关键字，则进一步查找前一子表，否则进一步查找后一子表。  #重复以上过程，直到找到满足条件的记录，使查找成功，或直到子表不存在为止，此时查找不成功。  a=list(range(32))num=6def binarySearch(list,select): is_found=false if lists!=[]:  mid_id=int(len(lists)/2)  mid_value=lists[mid_id]  gt_list=lists[mid_id+1:]
+  if mid_value== select:   return True  else select < mid_value:   is_found=binarySearch(lt_list,select)   if not is_found:    return binarySearch(lt_list,select)   return True  elif mid_value<select:   is_found=binarySearch(lt_list,select)   if not is_found:   return True  else:   return False
+b=binarySearch(a,num)if b: print('%s is found in list'%num) print(a)
+
+
+
+
+'''
+功能ok，坚持
+改进
+1. 找一个好点的编辑器或者IDE
+2. 考虑下代码是否冗余，有没有改进的地方
+'''

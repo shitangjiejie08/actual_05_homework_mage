@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户管理系统</title>
+</head>
+<body>
+    <h2>用户管理系统</h2>
+    <label><a href="{% url "user:add" %}">增加用户信息</a></label><br/><br/>
+    <label><a href="{% url "user:delete" %}">删除用户信息</a></label><br/><br/>
+    <label><a href="{% url "user:update" %}">修改用户信息</a></label><br/><br/>
+    <label><a href="{% url "user:find" %}">查找用户信息</a></label><br/><br/>
+</body>
+</html>

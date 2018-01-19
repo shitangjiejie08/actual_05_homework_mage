@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>用户修改</title>
+    </head>
+    <body>
+		<div style="color:red">{{ error }}</div>
+    	<h1>用户: {{ username }} 信息修改</h1>       
+		<form action="/user/edit_save/" method="POST">
+			{% csrf_token %}
+			</label><input name="edit_name" type='hidden' value="{{ username }}" readonly="true"/>
+			<label>年龄:</label><input type="text" name="edit_age" value="{{ age }}"/><br/><br/>
+			<label>联系方式:</label><input type="text" name="edit_tel" value="{{ tel }}"/><br/><br/>
+			<label>密码:</label><input type="password" name="edit_pass" value="{{ password }}"/><br/><br/>
+			<input type="submit" value="确认修改"/><br/><br/>
+		</form>
+    </body>
+</html>

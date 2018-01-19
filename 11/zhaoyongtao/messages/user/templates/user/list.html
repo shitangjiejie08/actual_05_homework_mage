@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>用户列表</title>
+        <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" crossorigin="anonymous">
+    </head>
+    <body>
+        <label style="color: red">欢迎 {{ request.session.user.username }}</label> 
+        <a class="btn  btn-xs btn-success" href="/user/create_user/">添加</a>
+        <a class="btn  btn-xs btn-info" href="/user/logout/">退出登录</a>
+        <table  class="table table-striped table-bordered table-hover table-condensed">
+            <thead>
+                <tr>
+                    <th>名字</th>
+                    <th>年龄</th>
+                    <th>电话号码</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                    <tr  class="{% cycle 'active' 'success' 'warning' 'info' %}">
+                        <td>{{ user.username }}</td>
+                        <td>{{ user.age }}</td>
+                        <td>{{ user.tel }}</td>
+                        <td>
+                            <a class="btn  btn-xs btn-success btn-info" href="/user/view_user/?id={{ user.id }}">编辑</a>
+                            <a class="btn  btn-xs btn-success btn-warning" href="/user/view_password/?id={{ user.id }}">修改密码</a>
+                            <a class="btn  btn-xs btn-success btn-danger" href="/user/delete_user/?id={{ user.id }}">删除</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </body>
+</html>

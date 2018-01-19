@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户{{ action_show }}页面</title>
+</head>
+<body>
+    <h1>{{ action_show }}用户</h1>
+    {% if error %}
+        <div style="color: red">{{ error }}</div>
+    {% endif %}
+
+    {% if action == 'add' or action == 'modify' %}
+        <form action="/users/{{ action }}" method="post">
+            {% csrf_token %}
+            {% if action == 'add' %}
+                格式要求：name必须在0到8个字符串，年龄必须1到100的整数，用户名不可重复<br />
+            {% elif action == 'modify' %}
+                格式要求：name必须在用户列表中，年龄必须1到100的整数<br />
+            {% endif %}
+            用户：<input type="text" name="name" value="{{ name }}" /> <br/><br/>
+            年龄：<input type="text" name="age" value="{{ age }}"> <br/><br/>
+            密码：<input type="password" name="password" value="{{ password }}" /> <br/><br/>
+            电话：<input type="text" name="tel" value="{{ tel }}" /> <br/><br/>
+            <input type="submit" value="提交" />
+        </form>
+    {% elif action == 'delete' or action == 'find' %}
+        <form action="/users/{{ action }}" method="post">
+            {% csrf_token %}
+            格式要求：name必须用户列表中<br />
+            用户：<input type="text" name="name" value="{{ name }}" /> <br/><br/>
+            <input type="submit" value="提交" />
+        </form>
+    {% elif action == 'list' %}
+        <form action="/users/{{ action }}" method="post">
+            {% csrf_token %}
+            排序方式：
+            <select name="list_mode">
+                <option value="name">name</option>
+                <option value="age">age</option>
+                <option value="tel">tel</option>
+            </select>
+            <input type="submit" value="提交" />
+        </form>
+    {% endif %}
+    <a href="/users/home">返回主界面</a>
+</body>
+</html>

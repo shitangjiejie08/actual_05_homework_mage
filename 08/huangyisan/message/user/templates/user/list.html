@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>users_manage</title>
+    </head>
+    <body>
+        <h2>用户列表</h2>  <a href="/user/exit_user"> <input type="button" value="退出" onclick="window.location.href=('/user/exit_user/')"> </a>
+        <table>
+            <thead>
+                <tr>
+                    <th>name</th>
+                    <th>age</th>
+                    <th>tel</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if messages %}
+                    {% for message in messages %}
+                        <!--在add等环境如果出现异常，会传递过来一个error的key和对应的值，需要进行过滤-->
+                        {% if message == 'data_error' %}
+                            <label></label>
+                            {% elif message == 'func_error' %}
+                            <label></label>
+                        {% else %}
+                            <tr>
+                                <td>{{ message.username }}</td>
+                                <td>{{ message.age }}</td>
+                                <td>{{ message.tel }}</td>
+                                <td>
+                                    <a href="/user/edit_user/?username={{ message.username }}">编辑</a>
+                                    <a href="/user/delete_user/?username={{ message.username }}">删除</a> {{ message.func_error }}
+                                </td>
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td colspan="3"> 无数据 </td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
+        <br></br>
+        <a href="/user/add_user/">添加用户</a>
+    </body>
+</html>

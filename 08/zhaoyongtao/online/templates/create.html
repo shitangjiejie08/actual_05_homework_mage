@@ -1,0 +1,17 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <title>Wellcome to OnlineMessage</title>
+</head>
+<body>
+	<form action='/online/save/' method='POST'>
+		{% csrf_token %}
+		<label style="width:800px;">name</label><input type='text' name='username' placeholder='please input your name' ><br><br>
+		<label>title</label><input type='text' name='title' placeholder='please input title' ><br><br>
+		<label>context</label><input type='text' name='content' placeholder='please input content' ><br><br>
+		<input type='submit' value='留言'>
+	</form>
+</body>
+
+</html>

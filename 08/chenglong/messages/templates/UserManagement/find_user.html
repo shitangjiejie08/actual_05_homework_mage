@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Find_user</title>
+</head>
+<body>
+
+<table>
+    <thead>增加用户</thead>
+    <tr>
+        <th>用户名</th>
+        <th>年龄</th>
+        <th>电话</th>
+        <th>密码</th>
+    </tr>
+    <form action="/UserManagement/find_user_save/" method="post">
+        {% csrf_token %}
+        <tr>
+            <td><input type="text" name="username" value="{{ username }}" placeholder="请输入您的用户名！" ></td>
+
+        </tr>
+    <input type="submit" value="提交" align="center">
+        {{ error }}
+    </form>
+                <table class="table mb0 pr15 ranger-box2  ">
+                <thead>
+                    <tr>
+                        <th style="width: 15%;">姓名</th>
+                        <th style="width: 15%;">年龄</th>
+                        <th style="width: 15%;">电话</th>
+                        <th style="width: 15%;">密码</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for user in users %}
+                    <tr>
+
+                        <td style="width: 15px;">{{ user.name }}</td>
+                        <td style="width: 15%;">{{ user.age }}</td>
+                        <td style="width: 15%;">{{ user.tel }}</td>
+                        <td style="width: 15%;">{{ user.password }}</td>
+                        <td style="width: 15%;">Paid</td>
+                        <td>
+                            <button class="btn btn-xs btn-success"> <i class="glyphicon glyphicon-ok"></i> </button>
+                            <button class="btn btn-xs btn-warning"> <i class="glyphicon glyphicon-edit"></i> </button>
+                            <button class="btn btn-xs btn-danger"> <i class="glyphicon glyphicon-remove"></i> </button>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+</table>
+</body>
+</html>

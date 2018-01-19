@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'/>
+    <title>view_user</title>
+</head>
+<body>
+    <h1>{{ info }}</h1>
+    <form action="/users/modify/" method="post">
+        {% csrf_token %}
+        <label>用户名：</label> {{ name }} <input type="hidden" name="name" value="{{ name }}" /><br/>
+        <label>密码：</label> <input type="pawword" name="passwd" /><br/>
+        <label>电话：</label> <input type="text" name="tel" /><br/>
+        <label>年龄：</label> <input type="text" name="age" /><br/>
+        <input type="submit" />
+    </form>
+
+</body>
+</html>

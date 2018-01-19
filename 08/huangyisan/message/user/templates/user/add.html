@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>users_manage</title>
+    </head>
+    <body>
+                <h2>添加用户信息</h2>
+                {{ messages.data_error }}
+                <form action="/user/add_func/" method="POST">
+                    {% csrf_token %}
+                    <label>Name:</label> <input type="text" name="username" placeholder="请输入姓名"/> <br> </br>
+                    <label>Age:</label> <input type="text" name="age"  placeholder="请输入年龄(0-150)"/> <br> </br>
+                    <label>Tel:</label> <input type="text" name="tel"  placeholder="请输入手机号码"/> <br> </br>
+                    <label>password:</label> <input type="password" name="password" placeholder="请输入密码,大于6位"/> <br> </br>
+                    <input type="submit" value='调♂教'/>
+                </form>
+    </body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>留言</title>
+</head>
+<body>
+    {% if error %}
+        <div style="color: red">{{ error }}</div>
+    {% endif %}
+    <form action="/online/save" method="post">
+        {% csrf_token %}
+        留言者：<input type="text" name="username" value="{{ username }}" /> <br/><br/>
+        标题：<input type="text" name="title" value="{{ title }}" /> <br/><br/>
+        内容：<textarea name="content" value="{{ content }}" ></textarea> <br/><br/>
+        <input type="submit" value="留言" />
+    </form>
+    <a href="/online">返回</a> <br />
+</body>
+</html>

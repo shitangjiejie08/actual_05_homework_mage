@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>HTML模板</title>
+    </head>
+    <body>
+        <!-- kk 注释-->
+        <h1>COMK用户管理系统</h1>
+        <form action="/UserManagement/login/" method="post">
+            {% csrf_token %}
+            <!-- 常用的是get和post -->
+            <label>用户名:</label>
+            <input type="text" name="username" value="{{ username }}" placeholder="请输入您的用户名！" >
+            </p>
+            <label>密&nbsp;&nbsp;&nbsp;&nbsp;码:</label>
+            <input type="password" name="password" value="{{ password }}" placeholder="请输入您的密码！">
+            </p>
+            <input type="submit" value="登录" align="center">
+        </form>
+    </body>
+</html>

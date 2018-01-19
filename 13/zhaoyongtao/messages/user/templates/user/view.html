@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}用户菜单{% endblock %}
+{% block nav_user %}class='active'{% endblock %}
+{% block content %}
+    <h1>用户编辑</h1>
+    <form action="/user/modify_user/" method="POST">
+        {% csrf_token %}
+        <!--
+            <input type="hidden" name="id" value="{{ user.id }}"/><br/><br/>
+            <label>用户名:</label><input type="text" name="username" value="{{ user.username }}"/><br/><br/>
+            <label>电话号码:</label><input type="text" name="tel" value="{{ user.tel }}"/><br/><br/>
+            <label>年龄:</label><input type="text" name="age" value="{{ user.age }}"/><br/><br/>
+        -->
+        <table  class="table table-striped table-bordered table-hover table-condensed" >
+            {{ form.as_table }}
+        </table>
+        <div class="col-md-offset-11">
+            <input class="btn btn-primary btn-xs" type="submit" value="编辑"/><br/><br/>
+        </div>
+    </form>
+{% endblock %}

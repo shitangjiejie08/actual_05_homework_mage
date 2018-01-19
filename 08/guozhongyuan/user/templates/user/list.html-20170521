@@ -1,0 +1,54 @@
+<html>
+        <head>
+                <meta charset="utf-8"/>
+                <title>用户列表</title>
+        </head>
+
+
+        <body>
+
+                <a href="/online/create/">留言</a>
+		<a href="/user/require_login/">用户登录</a>
+
+                <!-- 我是注释-->
+                <table>
+
+                        <thead>
+
+                                <tr>
+                                        <th>用户名</th>
+                                        <th>年龄</th>
+                                        <th>电话</th>
+                                        <th>密码</th>
+                                </tr>
+                        </thead>
+
+                        <tbody>
+                                {% if users %}
+                                        {% for user in users %}
+                                                <tr>
+                                                        <td>{{ user.name }}</td>
+                                                        <td>{{ user.age }}</td>
+                                                        <td>{{ user.tel }}</td>
+                                                        <td>{{ user.password }}</td>
+                                        		<td>
+
+                                                		<a>编辑</a>
+                                                		<a href='/user/delete_user/?name={{ user.name }}' >删除</a>
+                                        		</td>
+                                                </tr>
+
+                                        {% endfor %}
+                                {% else %}
+                                        <tr>
+                                                <td colspan="4">无数据</td>
+                                        </tr>
+                                {% endif %}
+                        </tbody>
+
+                </table>
+
+
+        </body>
+
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>users_manage</title>
+    </head>
+    <body>
+        <h1>用户信息修改</h1>
+        <h3>{{ user_info.name }}用户当前信息：</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>name</th>
+                    <th>age</th>
+                    <th>tel</th>
+                </tr>
+            </thead>
+            <tbody>
+                    <tr>
+                        <td>{{ user_info.name }}</td>
+                        <td>{{ user_info.age}}</td>
+                        <td>{{ user_info.tel}}</td>
+                    </tr>
+            </tbody>
+        </table>
+        <h3>修改信息：</h3>
+        {{ messages.data_error }}
+        <form action="/user/modify_user/" method="POST">
+            {% csrf_token %}
+            <label>Name: {{ user_info.name }}</label>
+            <input type="hidden" name="name" value="{{ user_info.name }}"/> 
+            <input type="hidden" name="password" value="{{ user_info.password }}"/> <br> </br>
+            <label>Age:</label> <input type="text" name="age" value="{{ user_info.age }}" placeholder="请输入年龄"/> <br> </br>
+            <label>Tel:</label> <input type="text" name="tel" value="{{ user_info.tel }}" placeholder="请输入手机号码"/> <br> </br>
+            <input type="submit" value='调♂教'/>
+            <a href="/user/list_user/">
+                <input type="button" value="放♂置" onclick="window.location.href('/user/list_user/')">
+            </a>
+        </form>
+    </body>
+</html>

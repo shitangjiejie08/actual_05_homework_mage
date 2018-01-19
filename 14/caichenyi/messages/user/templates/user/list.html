@@ -1,0 +1,374 @@
+{% extends "base.html" %}
+
+{% block title %} 用户列表 {% endblock %}
+{% block nav_user %}class="active"{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <button type="button" class="btn btn-primary btn-add-user" data-title="添加">添加</button>
+    </div>
+
+    <div class="col-md-12">
+        <table id="table-user" class="table table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>名字</th>
+                    <th>年龄</th>
+                    <th>电话号码</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                <tr>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.age }}</td>
+                    <td>{{ user.tel }}</td>
+                    <td>
+                        <a href="/user/view_user/?id={{ user.id }}">编辑</a>
+                        <a href="/user/view_password/?id={{ user.id }}">修改密码</a>
+                        <a href="/user/delete_user/?id={{ user.id }}">删除</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!--添加用户-->
+<div class="modal fade" id="list-user" tabindex="-1" role="dialog" aria-labelledby="list-user-label">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="list-user-label">添加用户</h4>
+            </div>
+            <div class="modal-body">
+                <form novalidate="novalidate" class="form-horizontal save_user">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="username" class="control-label sr-only">用户名</label>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control" id="username" name="username" placeholder="用户名">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="control-label sr-only">密码</label>
+                        <div class="col-sm-5">
+                            <input type="password" class="form-control" id="password" name="password" placeholder="密码">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="other_password" class="control-label sr-only">确认密码</label>
+                        <div class="col-sm-5">
+                            <input type="password" class="form-control" id="other_password" name="other_password" placeholder="确认密码">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="age" class="control-label sr-only">年龄</label>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control" id="age" name="age" placeholder="年龄">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="tel" class="control-label sr-only">电话号码</label>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control" id="tel" name="tel" placeholder="电话号码">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary btn-user">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--编辑用户-->
+<div class="modal fade" id="view-user" tabindex="-1" role="dialog" aria-labelledby="view-user-label">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="view-user-label">编辑用户</h4>
+            </div>
+            <div class="modal-body">
+                <form novalidate="novalidate" class="form-horizontal view_user">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="view_id" class="control-label sr-only">用户编号</label>
+                        <div class="col-sm-5">
+                            <input type="hidden" class="form-control" id="view_id" name="id" placeholder="用户编号">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="username" class="control-label sr-only">用户名</label>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control" id="username" name="username" placeholder="用户名">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="age" class="control-label sr-only">年龄</label>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control" id="age" name="age" placeholder="年龄">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="tel" class="control-label sr-only">电话号码</label>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control" id="tel" name="tel" placeholder="电话号码">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary btn-view-user">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--修改密码-->
+<div class="modal fade" id="modifypw-user" tabindex="-1" role="dialog" aria-labelledby="modifypw-user-label">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="modifypw-user-label">修改密码</h4>
+            </div>
+            <div class="modal-body">
+                <form novalidate="novalidate" class="form-horizontal modifypw_user">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="modifypw_id" class="control-label sr-only">用户编号</label>
+                        <div class="col-sm-5">
+                            <input type="hidden" class="form-control" id="modifypw_id" name="id" placeholder="用户编号">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="control-label sr-only">新密码</label>
+                        <div class="col-sm-5">
+                            <input type="password" class="form-control" id="password" name="password" placeholder="新密码">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary btn-modifypw-user">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+{% block scripts %}
+<script type="text/javascript">
+jQuery(document).ready(function() {
+
+    var table = jQuery('#table-user').DataTable({
+        ajax : '{% url "user:get_ajax" %}',
+        columns: [
+            {"data" : "username"},
+            {"data" : "age"},
+            {"data" : "tel"},
+            {"data" : function(row) {
+                return '<a class="btn btn-primary btn-xs btn-view" data-id="' + row['id'] + '">编辑</a>' +
+                       '<a class="btn btn-warning btn-xs btn-modifypw" data-id="' + row['id'] + '">修改密码</a>' +
+                       '<a class="btn btn-danger btn-xs btn-delete" data-id="' + row['id'] + '">删除</a>';
+            }},
+        ],
+        order: [[0, "desc"],],
+        language: {
+            "sProcessing": "处理中...",
+            "sLengthMenu": "显示 _MENU_ 项结果",
+            "sZeroRecords": "没有匹配结果",
+            "sInfo": "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
+            "sInfoEmpty": "显示第 0 至 0 项结果，共 0 项",
+            "sInfoFiltered": "(由 _MAX_ 项结果过滤)",
+            "sInfoPostFix": "",
+            "sSearch": "搜索:",
+            "sUrl": "",
+            "sEmptyTable": "表中数据为空",
+            "sLoadingRecords": "载入中...",
+            "sInfoThousands": ",",
+            "oPaginate": {
+                "sFirst": "首页",
+                "sPrevious": "上页",
+                "sNext": "下页",
+                "sLast": "末页"
+            },
+            "oAria": {
+                "sSortAscending": ": 以升序排列此列",
+                "sSortDescending": ": 以降序排列此列"
+            }
+        }
+    });
+
+    jQuery('.btn-user').on('click', function() {
+        var data = jQuery('.save_user').serializeArray();
+        jQuery.post("{% url 'user:save_ajax' %}", data, function(data) {
+            if(data['status'] == 403) {
+                // alert(data['errors'].join('\n'));
+                swal({
+                    title: "错误提醒",
+                    text: data['errors'].join('\n'),
+                    type: "error",
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "确认",
+                    closeOnConfirm: false
+                }, function() {
+                    window.location.replace("{% url 'user:require_login' %}");
+                });
+            } else if (data['status'] == 400) {
+                var errors = [];
+                for(var key in data['errors']) {
+                    var errors_key = data['errors'][key];
+                    for(var i = 0; i < errors_key.length; i++) {
+                        errors.push(errors_key[i]['message']);
+                    }
+                }
+                // alert(errors.join('\n'));
+                swal({
+                    title: "错误提醒",
+                    text: errors.join('\n'),
+                    type: "error",
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "确认"
+                });
+            } else if (data['status'] == 200) {
+                jQuery('#list-user').modal('hide');
+                table.ajax.reload();
+            }
+        }, 'json');
+    });
+
+    jQuery('.btn-add-user').on('click', function() {
+        var dialog = jQuery('#list-user');
+        dialog.modal('show', jQuery(this));
+    });
+
+    <!--删除用户-->
+    jQuery('#table-user').on('click', 'a.btn-delete', function() {
+        var user_id = jQuery(this).data('id');
+        swal({
+            title: "确定删除吗？",
+            text: "你将无法恢复该虚拟文件！",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "确定删除！",
+            closeOnConfirm: false
+        },
+        function(){
+            var delete_url = "{% url 'user:delete_user' %}" + "?id=" + user_id;
+            jQuery.get(delete_url, function () {
+                swal("删除！", "你的虚拟文件已经被删除。", "success");
+                jQuery('#list-user').modal('hide');
+                table.ajax.reload();
+            });
+        });
+    });
+
+    <!--编辑用户-->
+    jQuery('#table-user').on('click', 'a.btn-view', function() {
+        var user_id = jQuery(this).data('id');
+        var dialog = jQuery('#view-user');
+        dialog.modal('show', jQuery(this));
+        document.getElementById("view_id").value = user_id;
+    });
+
+    <!--修改用户信息-->
+    jQuery('.btn-view-user').on('click', function() {
+        var data = jQuery('.view_user').serializeArray();
+        jQuery.post("{% url 'user:modify_user' %}", data, function(data) {
+            if(data['status'] == 403) {
+                // alert(data['errors'].join('\n'));
+                swal({
+                    title: "错误提醒",
+                    text: data['errors'].join('\n'),
+                    type: "error",
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "确认",
+                    closeOnConfirm: false
+                }, function() {
+                    window.location.replace("{% url 'user:require_login' %}");
+                });
+            } else if (data['status'] == 400) {
+                var errors = [];
+                for(var key in data['errors']) {
+                    var errors_key = data['errors'][key];
+                    for(var i = 0; i < errors_key.length; i++) {
+                        errors.push(errors_key[i]['message']);
+                    }
+                }
+                // alert(errors.join('\n'));
+                swal({
+                    title: "错误提醒",
+                    text: errors.join('\n'),
+                    type: "error",
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "确认"
+                });
+            } else if (data['status'] == 200) {
+                jQuery('#view-user').modal('hide');
+                table.ajax.reload();
+            }
+        }, 'json');
+    });
+
+    <!--修改密码-->
+    jQuery('#table-user').on('click', 'a.btn-modifypw', function() {
+        var user_id = jQuery(this).data('id');
+        console.log(user_id);
+        var dialog = jQuery('#modifypw-user');
+        dialog.modal('show', jQuery(this));
+        document.getElementById("modifypw_id").value = user_id;
+    });
+
+    <!--修改用户密码-->
+    jQuery('.btn-modifypw-user').on('click', function() {
+        var data = jQuery('.modifypw_user').serializeArray();
+        jQuery.post("{% url 'user:modify_password' %}", data, function(data) {
+            if(data['status'] == 403) {
+                // alert(data['errors'].join('\n'));
+                swal({
+                    title: "错误提醒",
+                    text: data['errors'].join('\n'),
+                    type: "error",
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "确认",
+                    closeOnConfirm: false
+                }, function() {
+                    window.location.replace("{% url 'user:require_login' %}");
+                });
+            } else if (data['status'] == 400) {
+                var errors = [];
+                for(var key in data['errors']) {
+                    var errors_key = data['errors'][key];
+                    for(var i = 0; i < errors_key.length; i++) {
+                        errors.push(errors_key[i]['message']);
+                    }
+                }
+                // alert(errors.join('\n'));
+                swal({
+                    title: "错误提醒",
+                    text: errors.join('\n'),
+                    type: "error",
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "确认"
+                });
+            } else if (data['status'] == 200) {
+                jQuery('#modifypw-user').modal('hide');
+                table.ajax.reload();
+            }
+        }, 'json');
+    });
+
+});
+</script>
+{% endblock %}

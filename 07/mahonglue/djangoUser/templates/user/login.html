@@ -1,0 +1,100 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">	
+		<title></title>
+		<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		
+	</head>
+	<body>
+    <br/>
+		<div class="container">
+            {% if error %}
+            <div class="row">
+                <div class="col-md-4 col-md-offset-4">
+                    <table class="table table-hover">
+                        <tr class="danger">
+                            <td>{{ error }}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+<div class="row">
+				<div class="col-md-8 col-md-offset-2">
+					<form class="form-horizontal" action="{% url "user:login" %}" method="POST">
+                        {% csrf_token %}
+
+						<div class="form-group">
+							<label class="control-label col-md-3" for="username">用户名</label>
+							<div class="col-md-6">
+								<input type="text" class="form-control" name="user" id="username" placeholder="单击输入您的用户名">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="control-label col-md-3" for="pwd">密码</label>
+							<div class="col-md-6">
+								<input type="password" class="form-control" name="pwd">
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-md-6 col-md-offset-3">
+								<div class="checkbox">
+									<label for="remberme"><input type="checkbox" name="remberme">记住密码</label>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-md-7 pull-right">
+								<input type="submit" class="btn btn-primary" name="lg" value="登陆"/>
+                                <input type="submit" class="btn btn-primary" name="regist" value="注册" >
+								<a href="{% url "user:index" %}" class="btn btn-default">返回首页</a>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+            {% else %}
+			<div class="row">
+				<div class="col-md-8 col-md-offset-2">
+					<form class="form-horizontal" action="{% url "user:login" %}" method="POST">
+                        {% csrf_token %}
+
+						<div class="form-group">
+							<label class="control-label col-md-3" for="username">用户名</label>
+							<div class="col-md-6">
+								<input type="text" class="form-control" name="user" id="username" placeholder="单击输入您的用户名">
+							</div>
+						</div>
+					
+						<div class="form-group">
+							<label class="control-label col-md-3" for="pwd">密码</label>
+							<div class="col-md-6">
+								<input type="password" class="form-control" name="pwd">
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-md-6 col-md-offset-3">
+								<div class="checkbox">	
+									<label for="remberme"><input type="checkbox" name="remberme">记住密码</label>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-md-7 pull-right">
+								<input type="submit" class="btn btn-primary" name="lg" value="登陆"/>
+                                <input type="submit" class="btn btn-primary" name="regist" value="注册" >
+								<a href="{% url "user:index" %}" class="btn btn-default">返回首页</a>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+            {% endif %}
+		</div>
+	</body>
+	<script src="http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</html>

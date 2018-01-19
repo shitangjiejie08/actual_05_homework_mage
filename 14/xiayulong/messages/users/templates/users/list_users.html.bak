@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>用户列表</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style>
+        div.nav-slider{
+            position: fixed;
+            top:70px;
+            bottom:0px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body style="padding-top:70px;">
+    <div class="container-fluid">
+        <div class="row">
+             <nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
+                  <div class="container-fluid">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                      </button>
+                      <a class="navbar-brand" href="#">Brand</a>
+                    </div>
+
+
+                      <ul class="nav navbar-nav navbar-right">
+                          <li><a href="/users/logout/">登出</a></li>
+                      </ul>
+                      <p class="navbar-text navbar-right"> 欢迎: {{ request.session.user }} , </p>
+                  </div><!-- /.container-fluid -->
+                </nav>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+        <div class="col-md-2  nav-slider">
+            <ul class="nav nav-pills nav-stacked">
+              <li role="presentation" class="active"><a href="#">用户管理</a></li>
+              <li role="presentation"><a href="/online/">留言板</a></li>
+              <li role="presentation"><a href="#">coming soon</a></li>
+              <li role="presentation"><a href="#">coming soon</a></li>
+              <li role="presentation"><a href="#">coming soon</a></li>
+              <li role="presentation"><a href="#">coming soon</a></li>
+              <li role="presentation"><a href="#">coming soon</a></li>
+              <li role="presentation"><a href="#">coming soon</a></li>
+              <li role="presentation"><a href="#">coming soon</a></li>
+              <li role="presentation"><a href="#">coming soon</a></li>
+              <li role="presentation"><a href="#">coming soon</a></li>
+              <li role="presentation"><a href="#">coming soon</a></li>
+              <li role="presentation"><a href="#">coming soon</a></li>
+              <li role="presentation"><a href="#">coming soon</a></li>
+              <li role="presentation"><a href="#">coming soon</a></li>
+              <li role="presentation"><a href="#">coming soon</a></li>
+              <li role="presentation"><a href="#">coming soon</a></li>
+              <li role="presentation"><a href="#">coming soon</a></li>
+            </ul>
+        </div>
+        <div class="col-md-10 col-md-offset-2">
+        <a href="/users/edit_user_info/">创建用户</a><br/>
+        <table class="table table-striped table-bordered table-hover table-condensed">
+            <thead>
+                <tr>
+                    <th>用户名</th>
+                    <th>年龄</th>
+                    <th>电话</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for v in users %}
+                <tr>
+                    <td>{{ v.name }}</td>
+                    <td>{{ v.age }}</td>
+                    <td>{{ v.tel }}</td>
+                    <td><a  class="btn btn-info" href="/users/view_users/?name={{ v.name }}"> 编辑基本信息 </a><a class="btn btn-warning" href="/users/view_users_passwd/?name={{ v.name }}"> 修改密码 </a><a class="btn btn-danger" href="/users/delete_users/?name={{ v.name }}"> 删除 </a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        </div>
+        </div>
+        
+    </div>
+</body>
+</html>

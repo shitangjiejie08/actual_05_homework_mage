@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>用户列表</title>
+    </head>
+    <body>
+        <a href="/user/create_user/">添加</a>
+        欢迎 {{ request.session.user.username }},<a href="/user/logout/">退出登录</a>
+        <table>
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>名字</th>
+                    <th>年龄</th>
+                    <th>电话号码</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in userlist %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ user.id }}</td>
+                        <td>{{ user.username }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>{{ user.is_active }}</td>
+                        <td>
+                            <a href="/account/user/?id={{ pre_page }}">编辑</a>
+                            <a href="/user/modify_password/?id={{ cur_page }}">修改密码</a>
+                            <a href="/user/delete_user/?id={{ next_page }}">删除</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+                <ul>
+                    <td>
+                            <a href="/account/userlist/?page={{ first_page }}">首页</a>
+
+                            <a href="/account/userlist/?page={{ pre_page }}">上一页</a>
+
+                            <a href="/account/userlist/?page={{ next_page }}">下一页</a>
+                            <a href="/account/userlist/?page={{ end_page }}">末页</a>
+                    </td>
+                {% for num in pages %}
+
+                        <a href="/account/userlist/?page={{ num }}">{{ num }}</a>
+
+                {% endfor %}
+                </ul>
+    </body>
+</html>

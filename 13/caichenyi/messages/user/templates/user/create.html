@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %} 用户添加 {% endblock %}
+
+{% block styles %}
+<style type="text/css">
+    li {
+        list-style-type:none;
+        color: red;
+        font-weight: 900;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<form class="form-horizontal" action="{% url 'user:save_user' %}" method="POST" novalidate="novalidate">
+    {% csrf_token %}
+    <div class="form-group">
+        {{ form.username.errors }}
+        <label class="col-sm-1 control-label">用户名：</label>
+        <div class="col-sm-11">
+            <input class="form-control" type="text" name="username" value="{{ form.username.value }}">
+        </div>
+    </div>
+    <div class="form-group">
+        {{ form.password.errors }}
+        <label class="col-sm-1 control-label">密码：</label>
+        <div class="col-sm-11">
+            <input class="form-control" type="password" name="password" value="{{ form.password.value }}">
+        </div>
+    </div>
+    <div class="form-group">
+        {{ form.age.errors }}
+        <label class="col-sm-1 control-label">年龄：</label>
+        <div class="col-sm-11">
+            <input class="form-control" type="text" name="age" value="{{ form.age.value }}">
+        </div>
+    </div>
+    <div class="form-group">
+        {{ form.tel.errors }}
+        <label class="col-sm-1 control-label">电话号码：</label>
+        <div class="col-sm-11">
+            <input class="form-control" type="text" name="tel" value="{{ form.tel.value }}">
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">添加</button>
+</form>
+{% endblock %}

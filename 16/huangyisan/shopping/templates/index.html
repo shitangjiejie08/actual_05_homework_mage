@@ -1,0 +1,262 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="{% static 'bootstrap/css/bootstrap.css' %}"/>
+	<link rel="stylesheet" type="text/css" href="{% static 'bootstrap/css/sticky-footer.css' %}"/>
+	<link rel="stylesheet" type="text/css" href="{% static 'bootstrap/css/navbar.css' %}"/>
+	<link rel="stylesheet" type="text/css" href="{% static 'sweetalert/dist/sweetalert.css' %}" />
+	<script type="text/javascript" src="{% static 'bootstrap/js/jquery.js' %}"></script>
+	<script type="text/javascript" src="{% static 'bootstrap/js/bootstrap.js' %}"></script>
+	<script type="text/javascript" src="{% static 'sweetalert/dist/sweetalert.min.js' %}" ></script>
+
+<title>AliJD</title>
+</head>
+<body>
+<div id="wrap">
+	<nav class="navbar navbar-default" role="navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">首页</a>
+			</div>
+			<div class="collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#">Diamonds</a></li>
+					<li><a href="#">Engagement Rings</a></li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Wedding<b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="#">Action</a></li>
+							<li><a href="#">Another action</a></li>
+							<li><a href="#">Something else here</a></li>
+							<li class="divider"></li>
+							<li><a href="#">Separated link</a></li>
+							<li class="divider"></li>
+							<li><a href="#">One more separated link</a></li>
+						</ul>
+					</li>
+				</ul>
+				<form class="navbar-form navbar-left" role="search">
+					<div class="form-group">
+						<input type="text" class="form-control" placeholder="Search">
+					</div>
+					<button type="submit" class="btn btn-default">Submit</button>
+				</form>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a data-toggle="modal" href="#login" data-target="#login">Login</a></li>
+					<li><a data-toggle="modal" href="#register" data-target="#register">Register</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-6 col-md-3">
+				<a class="thumbnail" href="detail.html">
+					<img alt="" src="{% static 'luoli.jpg' %}" class="img-responsive">
+				</a>
+				<div class="panel-title text-center">
+					<a href="single-item.html">HTC One V</a>
+				</div>
+				<div class="text-center">
+					<h1 class="badge">Price: $50.00</h1>
+				</div>
+			</div>
+			<div class="col-xs-6 col-md-3">
+				<a class="thumbnail" href="detail.html">
+					<img alt="" src="{% static 'luoli.jpg' %}" class="img-responsive">
+				</a>
+				<div class="panel-title text-center">
+					<a href="detail.html">HTC One V</a>
+				</div>
+				<div class="text-center">
+					<h1 class="badge">Price: $50.00</h1>
+				</div>
+			</div>
+			<div class="col-xs-6 col-md-3">
+				<a class="thumbnail" href="detail.html">
+					<img alt="" src="{% static 'luoli.jpg' %}" class="img-responsive">
+				</a>
+				<div class="panel-title text-center">
+					<a href="single-item.html">HTC One V</a>
+				</div>
+				<div class="text-center">
+					<h1 class="badge">Price: $50.00</h1>
+				</div>
+			</div>
+			<div class="col-xs-6 col-md-3">
+				<a class="thumbnail" href="detail.html">
+					<img alt="" src="{% static 'luoli.jpg' %}" class="img-responsive">
+				</a>
+				<div class="panel-title text-center">
+					<a href="single-item.html">HTC One V</a>
+				</div>
+				<div class="text-center">
+					<h1 class="badge">Price: $50.00</h1>
+				</div>
+			</div>
+			<div class="col-xs-6 col-md-3">
+				<a class="thumbnail" href="detail.html">
+					<img alt="" src="{% static 'luoli.jpg' %}" class="img-responsive">
+				</a>
+				<div class="panel-title text-center">
+					<a href="single-item.html">HTC One V</a>
+				</div>
+				<div class="text-center">
+					<h1 class="badge">Price: $50.00</h1>
+				</div>
+			</div>
+			<div class="col-xs-6 col-md-3">
+				<a class="thumbnail" href="detail.html">
+					<img alt="" src="{% static 'luoli.jpg' %}" class="img-responsive">
+				</a>
+				<div class="panel-title text-center">
+					<a href="single-item.html">HTC One V</a>
+				</div>
+				<div class="text-center">
+					<h1 class="badge">Price: $50.00</h1>
+				</div>
+			</div>
+			<div class="col-xs-6 col-md-3">
+				<a class="thumbnail" href="detail.html">
+					<img alt="" src="{% static 'luoli.jpg' %}" class="img-responsive">
+				</a>
+				<div class="panel-title text-center">
+					<a href="single-item.html">HTC One V</a>
+				</div>
+				<div class="text-center">
+					<h1 class="badge">Price: $50.00</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="footer">
+	<div class="container">
+		<p class="text-muted credit" align="center">©Copyright 2017 AliJD | All rights reserved. </p>
+	</div>
+</div>
+
+<div class="modal" id="login">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4>Sign in</h4>
+			</div>
+			<div class="modal-body">
+				<form class="form-horizontal" role="form" action='/user/login' method="post" name="loginForm">
+					<div class="form-group">
+					<label for="email" class="col-xs-4 control-label">Email</label>
+					<div class="col-xs-6">
+						<input type="text" class="form-control" name="email" id="email" placeholder="Email" value="">
+					</div>
+					</div>
+					<div class="form-group">
+					<label for="password" class="col-xs-4 control-label">Password</label>
+					<div class="col-xs-6">
+						<input type="password" class="form-control" name="password" id="password" placeholder="Password" value="">
+					</div>
+					</div>
+					<div class="form-group">
+					<div class="col-xs-offset-4 col-xs-10">
+					<button type="submit" class="btn btn-primary">Login</button>
+					</div>
+					</div>
+				</form>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->	
+
+<div class="modal" id="register">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4>Create Account</h4>
+			</div>
+			<div class="modal-body">
+				<!--<form class="form-horizontal form-message" role="form" action='/usr/account' method="post" name="registerForm">-->
+				<form class="form-horizontal form-message" role="form"  name="registerForm">
+					{% csrf_token %}
+					<div class="form-group">
+						<label for="userName" class="col-xs-4 control-label">用户名</label>
+						<div class="col-xs-6">
+							<input type="text" class="form-control" name="userName" id="userName" placeholder="Username" value="">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="password" class="col-xs-4 control-label">密码</label>
+						<div class="col-xs-6">
+							<input type="password" class="form-control" name="password" id="password" placeholder="Password" value="">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="password2" class="col-xs-4 control-label">确认密码</label>
+						<div class="col-xs-6">
+							<input type="password" class="form-control" name="password2" id="password2" placeholder="Confirm Password" value="">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="mail" class="col-xs-4 control-label">邮箱</label>
+						<div class="col-xs-6">
+							<input type="text" class="form-control" name="email" id="mail" placeholder="email" value="">
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<div class="col-xs-offset-4 col-xs-10">
+							<button type="button" class="btn btn-primary account-primary">Create Account</button>
+						</div>
+					</div>
+					<script type="text/javascript">
+						jQuery('#register').on('show.bs.modal',function () {
+							var modal=jQuery(this);
+							modal.find('input[type=text]').val("");
+							modal.find('input[type=password]').val("")
+                        });
+						jQuery('.account-primary').on('click',function () {
+							var args = jQuery('.form-message').serializeArray();
+							jQuery.get("{% url 'account:register' %}", args,function (data) {
+								if (data['status'] == 400) {
+							       swal({
+                        				title: "错误提醒",
+										text: data['errors'],
+										type: "error",
+										confirmButtonColor: "#DD6B55",
+										confirmButtonText: "确认",
+										closeOnConfirm: false
+										});
+								}
+								else{
+								    swal({
+                        				title: "注册成功",
+										text: data.result +'\n'+'2秒后自动关闭',
+										type: "success",
+										confirmButtonColor: "#50dd4a",
+										confirmButtonText: "确认",
+										closeOnConfirm: false,
+										timer: 2000
+										});
+								    jQuery.get("{% url 'account:active' %}", args,'json')
+								}
+                            }, 'json');
+                        })
+					</script>
+				</form>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->	
+
+</body>
+</html>

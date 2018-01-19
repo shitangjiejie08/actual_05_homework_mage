@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+	<title>删除用户</title>
+</head>
+	<h2>删除用户</h2>
+<body>
+<form	action="/usermanager/delUser" method="POST">
+	{% csrf_token %}
+	用户名：<input type = 'text' name="username" placeholder="需删除的用户名"/>
+	<input type="submit" value="提交">
+</form>
+</body>
+</html>

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>删除用户信息</title>
+</head>
+<body>
+    <form action="{% url "user:delete_user" %}" method="POST">
+        {% csrf_token %}
+        <input type="text" name="username" placeholder="要删除的用户名">
+        <input type="submit" value="删除">
+    </form>
+</body>
+</html>

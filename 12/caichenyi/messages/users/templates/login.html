@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登陆页面</title>
+</head>
+<body>
+    <h1>用户登录</h1>
+    {{ error }}
+    <form action="/users/login/" method="POST" novalidate="novalidate">
+        <label>用户名:</label><input type="text" name="username" value="{{ username }}"/><br/><br/>
+        <label>密码:</label><input type="password" name="password" value="{{ password }}"/><br/><br/>
+        <!--
+        <table>
+            {{ form.as_table }}
+        </table>
+        -->
+        <input type="submit" value="登录"/><br/><br/>
+    </form>
+</body>
+</html>

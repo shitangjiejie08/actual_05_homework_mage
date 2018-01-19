@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户管理</title>
+</head>
+<body>
+<a href="/online/create/">留言</a>
+<table>
+    <thead>comk用户详细信息</thead>
+    <tr>
+        <th>留言时间</th>
+        <th>留言者</th>
+        <th>标题</th>
+        <th>内容</th>
+    </tr>
+    {% for message in messages %}
+        <tr>
+            <td>{{ message.publish_date }}</td>
+            <td>{{ message.username }}</td>
+            <td>{{ message.title }}</td>
+            <td>{{ message.content }}</td>
+        </tr>
+    {% endfor %}
+
+
+</table>
+<tfoot><a href="nextpage.html">下一页</tfoot>
+</body>
+</html>

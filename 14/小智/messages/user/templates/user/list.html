@@ -1,0 +1,268 @@
+{% extends "base.html" %}
+
+{% block title %} 用户列表 {% endblock %}
+{% block nav_user %}class="active"{% endblock %}
+{% block content %}
+
+
+<!-- Modal message-->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">添加用户</h4>
+      </div>
+      <div class="modal-body">
+         <div class="row">
+                <div class="col-md-12">
+                    <form  novalidate="novalidate" class="form-horizontal form-user">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="title" class="control-label sr-only">用户名</label>
+                            <div class="col-sm-5">
+                                <input type="text" class="form-control" id="username" name="username" placeholder="用户名">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="content" class="control-label sr-only">密码</label>
+                            <div class="col-sm-5">
+                                <input type="password" class="form-control" id="password" name="password" placeholder="密码">
+                            </div>
+                        </div>
+                         <div class="form-group">
+                            <label for="content" class="control-label sr-only">确认密码</label>
+                            <div class="col-sm-5">
+                                <input type="password" class="form-control" id="other_password" name="other_password" placeholder="确认密码">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="title" class="control-label sr-only">年龄</label>
+                            <div class="col-sm-5">
+                                <input type="text" class="form-control" id="age" name="age" placeholder="年龄">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="title" class="control-label sr-only">电话号码</label>
+                            <div class="col-sm-5">
+                                <input type="text" class="form-control" id="tel" name="tel" placeholder="电话号码">
+                            </div>
+                        </div>
+                        <!-- <div class="form-group">
+                            <div class="col-sm-5">
+                                <button type="button" class="btn btn-primary btn-block btn-message">留言</button>
+                            </div>
+                        </div> -->
+                    </form>
+                </div>
+            </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-primary btn-create">添加</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <a href="/user/create_user/">添加</a> -->
+
+<div class="row">
+    <div class="col-md-12">
+        <button  type="button" class="btn btn-primary btn-message-dialog" data-title="添加用户">添加用户</button>
+    </div>
+</div>
+
+<table id="table-user" class="table table-striped table-bordered table-hover" id="table-user">
+    <thead>
+        <tr>
+            <th>名字</th>
+            <th>年龄</th>
+            <th>电话号码</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+    <!-- <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.username }}</td>
+                <td>{{ user.age }}</td>
+                <td>{{ user.tel }}</td>
+                <td>
+                    <a href="/user/view_user/?id={{ user.id }}">编辑</a>
+                    <a href="/user/view_password/?id={{ user.id }}">修改密码</a>
+                    <a href="/user/delete_user/?id={{ user.id }}">删除</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody> -->
+</table>
+{% endblock %}
+
+{% block scripts %} 
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+        //在页面加载完成时
+        var table = jQuery("#table-user").DataTable({
+            ajax: "{% url 'user:get_ajax' %}",
+            columns: [
+                    {"data": "username"},//uusename
+                    {"data": "age"},//age
+                    {"data": "tel"},//tel
+                    {"data" : function(row) {
+                        //操作列
+                    return '<a href="/user/modify_user/?="' + row['id'] +  '">编辑  </a>'+
+                           '<a class="btn-delete" data-id="' + row['id'] +  '">删除  </a>'+
+                           '<a class="btn-modify_password" data-id="' + row['id'] +  '">修改密码</a>';   
+                 }},
+                
+            ],
+            order:[[0, 'desc'],
+            ],
+            language: {
+            "sProcessing": "处理中...",
+            "sLengthMenu": "显示 _MENU_ 项结果",
+            "sZeroRecords": "没有匹配结果",
+            "sInfo": "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
+            "sInfoEmpty": "显示第 0 至 0 项结果，共 0 项",
+            "sInfoFiltered": "(由 _MAX_ 项结果过滤)",
+            "sInfoPostFix": "",
+            "sSearch": "搜索:",
+            "sUrl": "",
+            "sEmptyTable": "表中数据为空",
+            "sLoadingRecords": "载入中...",
+            "sInfoThousands": ",",
+            "oPaginate": {
+                "sFirst": "首页",
+                "sPrevious": "上页",
+                "sNext": "下页",
+                "sLast": "末页"
+            },
+            "oAria": {
+                "sSortAscending": ": 以升序排列此列",
+                "sSortDescending": ": 以降序排列此列"
+            }
+        },
+        });
+        //分页展示
+
+
+       //bootstarp的 myModal的方法
+        jQuery(".btn-message-dialog").on("click", function() {
+
+            jQuery('#myModal').modal('show');
+        });
+        // jQuery("#myModal").on('show.bs.modal', function(event) {
+        //     /*
+        //     如果是编辑:
+        //     button--> id(编辑那一个)
+        //     $.get(id) ==> data
+        //     */
+        //     var button = jQuery(event.relatedTarget);
+        //     var title = button.data('title');
+        //     var modal = jQuery(this);
+        //     modal.find("input[type=text]").val("");
+        //     modal.find("input[type=password]").val("");
+        //  });
+        jQuery(".btn-create").on("click", function() {
+              /* ajax post提交*/
+            console.log('post');
+            var data = jQuery(".form-user").serializeArray();
+            console.log(data);
+            $.post("{% url 'user:save_ajax'%}", data, function(data){
+                    if (data['status'] == 403 ){
+                         //alert(errors.join('\n'));
+                        swal({ 
+                              title: "错误提醒", 
+                              text: data['errors'].join("\n"), 
+                              type: "error",
+                              showCancelButton: true, 
+                              confirmButtonColor: "#DD6B55",
+                              confirmButtonText: "确定！", 
+                              // cancelButtonText: "取消删除！",
+                              closeOnConfirm: false, 
+                            },
+                            function(){ 
+                              
+                                window.location.replace("{% url 'user:require_login' %}");
+            
+                            });
+                
+                        
+                    } else if (data['status'] == 400){
+                        var  errors = [];
+                        for(var key in data['errors']){
+                            var error_key = data['errors'][key];
+                            for(var i=0; i < error_key.length; i++) {
+                                errors.push(error_key[i]['message']);
+                            };
+                        };
+                        swal({ 
+                              title: "错误提醒", 
+                              text: errors.join("\n"), 
+                              type: "error",
+                              confirmButtonColor: "#DD6B55",
+                              confirmButtonText: "确认！", 
+                });
+                    } else if (data['status'] == 200) {
+                       jQuery("#myModal").modal("hide");
+                       table.ajax.reload();
+            
+                    /* 提交结束 */
+                    /* 
+                    ajax get 
+                    dom操作tbody html/text <div style="color:red">addd</div>
+                        1.先清空原有的数据
+                            tbody.empty()
+                        2.创建dom节点append
+                            html<tr><td></td></tr>
+                            tobody.html(tobody_str)
+                    */
+                      // jQuery.get("{% url 'user:get_ajax' %}",function(data) {
+                      //   if (data['status'] == 403 ){
+                      //       //alert(errors.join('\n'));
+                      //                          swal({ 
+                      //         title: "错误提醒", 
+                      //         text: data['errors'].join("\n"), 
+                      //         type: "error",
+                      //         showCancelButton: true, 
+                      //         confirmButtonColor: "#DD6B55",
+                      //         confirmButtonText: "确定！", 
+                      //         // cancelButtonText: "取消删除！",
+                      //         closeOnConfirm: false, 
+                      //       },
+                      //       function(){ 
+                              
+                      //           window.location.replace("{% url 'user:require_login' %}");
+            
+                      //       });
+                
+                      //   } else if (data['status'] == 200) {
+                      //      console.log(data);
+                      //      var tobody = jQuery(".tbody-table-user");//先清空原有的数据
+                      //      tobody.empty();
+                      //      var users = data['users'];//获取data中的数据
+                      //      var html_list = []; //空数组
+                      //      //遍历数据并拼接
+                      //      for(var i = 0; i< users.length; i++){
+                      //        var str = '<tr>'+
+                      //                   '<td>'+users[i]['username']+'</td>'+
+                      //                    '<td>'+users[i]['age']+'</td>'+
+                      //                    '<td>'+users[i]['tel']+'</td>'+
+                      //                   '</tr>';
+                      //       html_list.push(str);//push到数组
+
+                      //     }
+                      //     console.log(html_list);
+                      //     tobody.html(html_list.join(''));//append:到tobody
+                      // }
+                      // }, 'json');  
+                  }
+            }, 'json');
+            
+         });  
+});
+
+</script>
+{% endblock %}

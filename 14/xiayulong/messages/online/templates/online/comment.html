@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %} 留言板{% endblock %}
+{% block nav_user %}><a href=/users/list_users/>{% endblock %}
+{% block nav_online %}class="active"><a href="#">{% endblock %}
+{% block content %}
+
+    <font color="#FF0000">{{ error }}</font>
+
+
+    <form action="/online/save/" method="post" novalidate="novalidate">
+        {% csrf_token %}
+        <!--
+        <label>用户名：</label><input type="text"  name="username" /><br/><br/>
+        <label>标题：</label><input type="password"  name="title" /><br/><br/>
+        <label>内容：</label><input type="text" name="content" /><br/><br/>
+        <input type="submit" value="submit"  />
+        -->
+        <table>
+            {{ f.as_table }}
+        </table>
+        <input type="submit" value="submit"  />
+    </form>
+{% endblock %}

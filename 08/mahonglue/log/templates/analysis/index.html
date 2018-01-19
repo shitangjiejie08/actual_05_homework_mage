@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <td colspan="6">概览</td>
+            </tr>
+            <tr>
+                <td>总点击量</td>
+                <td>{{ statics_all.hits }}</td>
+                <td>总访问量</td>
+                <td>{{ ip_sum }}</td>
+                <td>总流量</td>
+                <td>{{ statics_all.bytes }}</td>
+            </tr>
+            <tr>
+                <td>时间</td>
+                <td>每天点击数量</td>
+            </tr>
+            {% for day,stat in stat_day.items %}
+                <tr>
+                    <td>{{ day }}</td>
+                    <td>{{ stat.hits }}</td>
+                </tr>
+            {% endfor %}
+
+            <tr>
+                <td>状态码分布</td>
+            </tr>
+            {% for stat,cnt in status.items %}
+                <tr>
+                    <td>{{ stat }}</td><td>{{ cnt }}</td>
+                </tr>
+            {% endfor %}
+            <tr>
+                <td>每天的访问者量</td>
+            </tr>
+            {% for day, stat in stat_day.items %}
+                <tr>
+                    <td>{{ day }}</td><td>{{ stat.vistors }}</td>
+                </tr>
+            {% endfor %}
+            <tr>
+                <td>每天的流量</td>
+            </tr>
+            {% for day, stat in stat_day.items %}
+                <tr>
+                    <td>{{ day }}</td><td>{{ stat.bytes }}</td>
+                </tr>
+            {% endfor %}
+            <tr>
+                <td>访问来源</td>
+            </tr>
+            {% for c, n in city.items %}
+                <tr>
+                    <td>{{ c }}</td><td>{{ n }}</td>
+                </tr>
+            {% endfor %}
+        </thead>
+
+    </table>
+</body>
+</html>

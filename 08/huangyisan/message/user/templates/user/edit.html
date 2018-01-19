@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>users_manage</title>
+    </head>
+    <body>
+        <h1>用户信息修改</h1>
+        <h3>修改信息：</h3>
+        {{ messages.data_error }}
+        <form action="/user/modify_user/" method="POST">
+            {% csrf_token %}
+            <label>Name: {{ messages.username }}</label>
+            <input type="hidden" name="username" value="{{ messages.username }}"/> 
+            <input type="hidden" name="password" value="{{ messages.password }}"/> <br> </br>
+            <label>Age:</label> <input type="text" name="age" value="{{ messages.age }}" placeholder="请输入年龄"/> <br> </br>
+            <label>Tel:</label> <input type="text" name="tel" value="{{ messages.tel }}" placeholder="请输入手机号码"/> <br> </br>
+            <input type="submit" value='确定'/>
+            <a href="/user/list_user/">
+                <input type="button" value="取消" onclick="window.location.href('/user/list_user/')">
+            </a>
+        </form>
+    </body>
+</html>

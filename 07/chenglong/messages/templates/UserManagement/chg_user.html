@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chg_user</title>
+</head>
+<body>
+
+<table>
+    <thead>修改用户</thead>
+    <tr>
+        <th>用户名</th>
+        <th>年龄</th>
+        <th>电话</th>
+        <th>密码</th>
+    </tr>
+    <form action="/UserManagement/chg_user/" method="post">
+        {% csrf_token %}
+        <tr>
+            <td><input type="text" name="username" value="{{ username }}" placeholder="请输入您的用户名！" ></td>
+            <td><input type="text" name="age" value="{{ age }}" placeholder="请输入您的用户名！" ></td>
+            <td><input type="text" name="tel" value="{{ tel }}" placeholder="请输入您的用户名！" ></td>
+            <td><input type="text" name="password" value="{{ password }}" placeholder="请输入您的用户名！" ></td>
+
+        </tr>
+    <input type="submit" value="修改" align="center">
+        {{ error }}
+    </form>
+</table>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'/>
+    <title>edit_user_info</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+</head>
+<body>
+    <div class="container-fluid">
+        <h3>{{ info }}</h3>
+        <table class="table-striped table-hover table-condensed" >
+            <form action="/users/create_users/" method="post" novalidate="novalidate">
+                {% csrf_token %}
+                {{ f.as_table }}
+               
+                <tr>
+                    <td>
+                        <input type="submit"/>
+                    </td>
+                </tr>
+                
+            </form>
+         </table>
+    </div>
+
+</body>
+</html>

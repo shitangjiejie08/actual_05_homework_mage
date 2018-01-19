@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %} 用户管理{% endblock %}
+{% block nav_user %}class="active"><a href="#">{% endblock %}
+{% block nav_online %}><a href=/online/>{% endblock %}
+{% block content %}
+    <h1>{{ info }}</h1>
+    <div class="contain-fluid">
+        <table class="table-striped table-hover table-condensed">
+            <form action="/users/modify/" method="post">
+                {% csrf_token %}
+                <tr>
+                    <th>用户名：</th>
+                    <td>{{ name }} </td>
+                </tr>
+
+                {{ f.as_table }}            
+               
+                <tr>
+                    <td><input type="submit" /> </td>
+                </tr>
+            </form>
+        </table>
+    </div>
+{% endblock %}

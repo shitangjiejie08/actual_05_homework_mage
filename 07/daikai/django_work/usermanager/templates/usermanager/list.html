@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>用户列表</title>
+    </head>
+    <body>
+        <table>
+            <thead>
+                <tr>
+                    <th>姓名</th>
+                    <th>年龄</th>
+                    <th>电话</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                    <tr>
+                        <td>{{ user.name }}</td>
+                        <td>{{ user.age }}</td>
+                        <td>{{ user.tel }}</td>
+                        <td>
+                            <a href="/usermanager/edit_user/?name={{ user.name }}">编辑</a>
+                            <a href="/usermanager/delete_user/?name={{ user.name }}">删除</a>
+                        </td>
+                    </tr>         
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="/usermanager/create_user/">新增用户</a>
+    </body>
+</html>

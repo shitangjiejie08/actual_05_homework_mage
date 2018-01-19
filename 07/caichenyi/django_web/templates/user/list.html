@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户信息</title>
+</head>
+<body>
+    <h1>用户信息</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>名字</th>
+                <th>年龄</th>
+                <th>联系方式</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% if users %}
+            {% for user in users %}
+                <tr>
+                    <td>{{ user.name }}</td>
+                    <td>{{ user.age }}</td>
+                    <td>{{ user.tel }}</td>
+                    <td>
+                        <a href="/user/require_edit/?name={{ user.name }}">编辑</a>
+                        <a href="/user/delete/?name={{ user.name }}">删除</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        {% else %}
+            <tr>
+                <td colspan="3"> 无数据 </td>
+            </tr>
+        {% endif %}
+        </tbody>
+    </table>
+    <form action="/user/list/" method="post">
+    {% csrf_token %}
+        排序方式：
+        <select name="list">
+            <option value="name">name</option>
+            <option value="age">age</option>
+            <option value="tel">tel</option>
+        </select>
+        <input type="submit" value="排序" />
+    </form>
+    <a href="/user/add/">添加用户</a>
+    <a href="/user/index/">退出系统</a>
+</body>
+</html>

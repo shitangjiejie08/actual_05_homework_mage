@@ -1,0 +1,1 @@
+{"czh1": {"age": "34", "name": "czh1", "passwd": "123", "tel": "150"}, "zb": {"age": "123", "name": "zb", "passwd": "150", "tel": "34"}, "kk": {"age": "39", "name": "kk", "passwd": "123", "tel": "150"}, "kk1": {"age": "20", "name": "kk1", "passwd": "123", "tel": "151"}, "lin3": {"age": "32", "name": "lin3", "passwd": "123", "tel": "159"}}

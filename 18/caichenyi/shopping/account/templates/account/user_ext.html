@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+
+{% block style %}
+<style type="text/css">
+.nav-tabs {
+    margin-bottom: 15px;
+}
+</style>
+{% endblock %}
+
+{% block container %}
+<div data-example-id="togglable-tabs">
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" {% if nav == 'base' %} class="active" {% endif %}>
+            <a href="#user_ext_base" id="user_ext_base_tab" role="tab" data-toggle="tab" aria-controls="user_ext_base" aria-expanded="true">基本信息</a>
+        </li>
+        <li role="presentation" {% if nav == 'avatar' %} class="active" {% endif %}>
+            <a href="#user_ext_avatar" id="user_ext_avatar_tab" role="tab" data-toggle="tab" aria-controls="user_ext_avatar" aria-expanded="true">头像</a>
+        </li>
+        <li role="presentation" {% if nav == 'addr' %} class="active" {% endif %}>
+            <a href="#user_ext_addr" id="user_ext_addr_tab" role="tab" data-toggle="tab" aria-controls="user_ext_addr" aria-expanded="true">收获地址</a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane fade {% if nav == 'base' %} active in {% endif %}" id="user_ext_base" aria-labelledby="user_ext_base_tab">
+            <form action="{% url 'account:user_ext_base' %}" method="POST" novalidate="novalidate">
+                {% csrf_token %}
+                <table>
+                    {{ form.as_table }}
+                </table>
+                <input type="submit" value="修改" />
+            </form>
+        </div>
+        <div role="tabpanel" class="tab-pane fade {% if nav == 'avatar' %} active in {% endif %}" id="user_ext_avatar" aria-labelledby="user_ext_avatar_tab">
+            <form action="{% url 'account:user_ext_avatar' %}" method="POST" novalidate="novalidate" enctype="multipart/form-data">
+                {% csrf_token %}
+                <table>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <img class="img-thumbnail" style="width:200px; height: 200px;" src="/media/avatar/{{request.user.userext.avatar}}"/>
+                        </td>
+                    </tr>
+                    {{ form_avatar.as_table }}
+                </table>
+                <input type="submit" value="修改" />
+            </form>
+        </div>
+        <div role="tabpanel" class="tab-pane fade {% if nav == 'addr' %} active in {% endif %}" id="user_ext_addr" aria-labelledby="user_ext_addr_tab">
+            <form action="{% url 'account:user_ext_addr' %}" method="POST" novalidate="novalidate">
+                {% csrf_token %}
+                <table>
+                    {{ form_addr.as_table }}
+                </table>
+                <input type="submit" value="修改" />
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

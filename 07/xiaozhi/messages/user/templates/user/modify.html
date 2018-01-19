@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+	    <script src="/static/js/jquery2.1.4.min.js" ></script>
+	    <script src="/static/js/bootstrap.min.js"></script>
+        <title>更新用户</title>
+    </head>
+    <body>
+        <h1>更新{{ username }}用户</h1>
+        {{ error }}
+        <form action="/user/modify_user/" method="POST">
+            {% csrf_token %}
+            <input hidden="hidden" type="text" name="username" value="{{ username }}" placeholder="请输入您的用户名"/><br/><br/>
+            <label>密码:</label><input type="password" name="password" value="{{ password }}" placeholder="请输入您的用户密码！"/><br/><br/>
+            <label>电话号码:</label><input type="text" name="tel" value="{{ tel }}" placeholder="请输入您的电话号码"/><br/><br/>
+            <label>年龄:</label><input type="text" name="age" value="{{ age }}" placeholder="请输入您的年龄！"/>
+            <input type="submit" value="更新"/><br/><br/>
+        </form>
+    </body>
+</html>

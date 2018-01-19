@@ -1,0 +1,113 @@
+{% extends "layout.html" %}
+
+{% block style %}
+<style type="text/css">
+.nav-tabs {
+    margin-bottom: 15px;
+}
+</style>
+{% endblock %}
+{% block container %}
+
+<div data-example-id="togglable-tabs">
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active">
+            <a href="#user_ext_base" id="user_ext_base_tab" role="tab" data-toggle="tab" aria-controls="user_ext_base_tab" aria-expanded="false">基本信息</a>
+        </li>
+        <li role="presentation" >
+            <a href="#user_ext_avatar" role="tab" id="user_ext_avatar_tab" data-toggle="tab" aria-controls="user_ext_avatar" aria-expanded="true">头像</a>
+        </li>
+    </ul>
+    <div class="tab-content">
+         <div role="tabpanel" class="tab-pane fade active in" id="user_ext_base" aria-labelledby="user_ext_base_tab">
+            <form action="{% url 'account:user_ext_base' %}" method="POST" novalidate="novalidate" class="form-horizontal">
+                {% csrf_token %}
+                <!--<table>-->
+                    <!--{{ form.as_table }}-->
+                <!--</table>-->
+                {{ form.realname.errors }}
+                <div class="form-group">
+                <tr>
+                    <th>
+                        <label for="id_realname" class="col-sm-2 control-label">真实姓名:</label>
+                    </th>
+                    <div class="col-sm-3">
+                         <input type="password" name="realname" maxlength="64" class="form-control" required id="id_realname" /><br />
+                        <span class="helptext">您的真实姓名</span>
+                    </div>
+                </tr>
+                </div>
+                <div class="form-group">
+                <tr>
+                    <th><label for="id_nickname" class="col-sm-2 control-label">昵称:</label></th>
+                 <div class="col-sm-3">
+                     <input type="text" name="nickname" value="{{ form.nickname.value }}" maxlength="64" class="form-control" required id="id_nickname" />
+                 </div>
+                </tr>
+                </div>
+                <div class="form-group">
+                <tr>
+                    <th><label for="id_birthday" class="col-sm-2 control-label">生日:</label></th>
+                    <div class="col-sm-3">
+                        <input type="text" name="birthday" value="{{ form.birthday.value|date:'Y-n-j' }}" class="form-control" required id="id_birthday" />
+                    </div>
+                </tr>
+                </div>
+                <div class="form-group">
+                <tr>
+                    <th><label for="id_telephone" class="col-sm-2 control-label">电话:</label></th>
+                    <div class="col-sm-3">
+                        <input type="text" name="telephone" value="{{ form.telephone.value }}" class="form-control" maxlength="32" required id="id_telephone" />
+                    </div>
+                </tr>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-3 col-sm-offset-1">
+                        <label for="id_sex_0">性别:</label>
+                        <ul id="id_sex">
+                            <li>
+                                <label for="id_sex_0">
+                                    <input type="radio" name="sex" value="1" required id="id_sex_0" checked />男
+                                </label>
+                            </li>
+                            <li>
+                                <label for="id_sex_1">
+                                    <input type="radio" name="sex" value="0" required id="id_sex_1" />女
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+                <div class="col-sm-3 col-sm-offset-1">
+                   <input type="submit" value="修改" class="btn btn-success"/>
+                </div>
+
+            </form>
+        </div>
+        <div role="tabpanel" class="tab-pane fade" id="user_ext_avatar" aria-labelledby="user_ext_avatar_tab">
+            <form action="{% url 'account:user_ext_avatar' %}" method="POST", enctype="multipart/form-data" class="form-horizontal">
+              {% csrf_token %}
+
+                   <div class="col-sm-4 col-sm-offset-1">
+                        <img class="img-thumbnail" style="width:200px; height: 200px;" src="/media/avatar/{{request.user.userext.avatar}}">
+                        </br>
+                         <div class="form-group">
+                        <label for="id_avatar" class="col-sm-2 control-label">头像:</label>
+                        <div class="col-sm-4">
+                            <input type="file" name="avatar" id="id_avatar" class="form-group"/>
+                        </div>
+                    </div>
+                <div>
+                    <input type="submit" value="修改" class="btn btn-primary"/>
+                </div>
+                   </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+
+
+{% endblock %}

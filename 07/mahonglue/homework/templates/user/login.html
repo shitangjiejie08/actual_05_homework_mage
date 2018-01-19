@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登陆</title>
+</head>
+<body>
+    <h1>用户登陆</h1>
+    {{ error }}<br/>
+        <form action="{% url "user:login" %}" method="POST">
+            {% csrf_token %}
+            <label>用户名  </label><input type="text" name="username" placeholder="请输入用户名" value="{{ username }}"><br/><br/>
+            <label>密码  </label><input type="password" name="password" placeholder="请输入密码" value="{{ password }}"><br/><br/>
+            <label>密码  </label><input type="submit" value="登陆">
+            <textarea name="text"></textarea>
+        </form>
+</body>
+</html>

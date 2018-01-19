@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>详细信息</title>
+</head>
+<body>
+    <p>要查找的用户的详细信息</p>
+    <li>{{ user.username }}</li>
+    <li>{{ user.tel }}</li>
+    <li>{{ user.password }}</li>
+    <form action="{% url "user:control" %}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="返回管理界面">
+    </form>
+</body>
+</html>

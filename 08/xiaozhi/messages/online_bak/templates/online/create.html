@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>用户留言板</title>
+        <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+	    <script src="/static/js/jquery2.1.4.min.js" ></script>
+	    <script src="/static/js/bootstrap.min.js"></script>
+    </head>
+<body>
+<!--<h1>留言板</h1>-->
+
+<div style="padding: 10px 20px 10px;">
+<form action="/online/save/" method="POST" class="bs-example bs-example-form" role="form">
+    {% csrf_token %}
+    <div class="input-group">
+        <span class="input-group-addon">用户名</span>
+        <input type="text" name="username" class="form-control" placeholder="请输入您的用户名！">
+    </div>
+    <br>
+    <div class="input-group">
+        <span class="input-group-addon">标题</span>
+        <input type="text" name="title" class="form-control" placeholder="请输入您的标题！">
+    </div>
+    <br>
+    <div class="input-group">
+        <span class="input-group-addon">内容</span>
+        <input type="text" name="content" class="form-control" placeholder="请输入您的内容！">
+    </div>
+    <br>
+    <button type="submit" class="btn btn-info">留言</button>
+</form>
+</body>
+</html>
